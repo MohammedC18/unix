@@ -1,0 +1,191 @@
+1. Arithmetic Operations
+
+#!/bin/bash
+perform_operations() {
+   echo "Enter two numbers:"
+   read num1 num2
+   echo "Select operation:"
+   echo "1. Addition"
+   echo "2. Subtraction"
+   echo "3. Multiplication"
+   echo "4. Division"
+   read operation
+
+   case $operation in
+       1) echo "Result: $(($num1 + $num2))" ;;
+       2) echo "Result: $(($num1 - $num2))" ;;
+       3) echo "Result: $(($num1 * $num2))" ;;
+       4) echo "Result: $(($num1 / $num2))" ;;
+       *) echo "Invalid operation" ;;
+   esac
+}
+perform_operations
+
+
+
+2. Simple Interest Calculation
+
+#!/bin/bash
+calculate_interest() {
+   echo "Enter principal amount:"
+   read principal
+   echo "Enter rate of interest (in %):"
+   read rate
+   echo "Enter time (in years):"
+   read time
+   interest=$(echo "scale=2; $principal * $rate * $time / 100" | bc)
+   echo "Simple Interest: $interest"
+}
+calculate_interest
+
+
+3. Largest Among Three Numbers
+#!/bin/bash
+find_largest() {
+   echo "Enter three numbers:"
+   read num1 num2 num3
+   if [ $num1 -ge $num2 ] && [ $num1 -ge $num3 ]; then
+       echo "Largest number is: $num1"
+   elif [ $num2 -ge $num1 ] && [ $num2 -ge $num3 ]; then
+       echo "Largest number is: $num2"
+   else
+       echo "Largest number is: $num3"
+   fi
+}
+find_largest
+
+
+4. Leap Year Check
+#!/bin/bash
+check_leap_year() {
+   echo "Enter a year:"
+   read year
+   if (( ($year % 4 == 0 && $year % 100 != 0) || ($year % 400 == 0) )); then
+       echo "$year is a leap year."
+   else
+       echo "$year is not a leap year."
+   fi
+}
+check_leap_year
+
+
+5. Multiplication Table
+#!/bin/bash
+print_table() {
+   echo "Enter a number:"
+   read number
+   echo "Multiplication Table of $number"
+   i=1
+   while [ $i -le 10 ]
+   do
+       echo "$number x $i = $((number * i))"
+       i=$((i + 1))
+   done
+}
+print_table
+
+
+6. Search Element in a List
+#!/bin/bash
+search_element() {
+   echo "Enter the list of elements (space-separated):"
+   read -a list
+   echo "Enter the element to search:"
+   read element
+
+   for item in "${list[@]}"; do
+       if [ "$item" == "$element" ]; then
+           echo "$element is present in the list."
+           return
+       fi
+   done
+   echo "$element is not present in the list."
+}
+search_element
+
+
+7. String Comparison
+#!/bin/bash
+compare_strings() {
+   echo "Enter first string:"
+   read str1
+   echo "Enter second string:"
+   read str2
+
+
+   if [ "$str1" == "$str2" ]; then
+       echo "Strings are equal."
+   else
+       echo "Strings are not equal."
+   fi
+}
+compare_strings
+
+
+8. Check File/Directory Existence
+#!/bin/bash
+check_and_create() {
+   echo "Enter the directory/file path:"
+   read path
+   if [ -e "$path" ]; then
+       echo "$path exists."
+   else
+       echo "$path does not exist. Creating..."
+       mkdir -p "$path"
+       echo "$path created."
+   fi
+}
+check_and_create
+
+
+9. Menu-Driven Calculator
+#!/bin/bash
+menu_calculator() {
+   echo "Select operation:"
+   echo "1. Addition"
+   echo "2. Subtraction"
+   echo "3. Multiplication"
+   echo "4. Division"
+   read operation
+   echo "Enter two numbers:"
+   read num1 num2
+   case $operation in
+       1) echo "Result: $(($num1 + $num2))" ;;
+       2) echo "Result: $(($num1 - $num2))" ;;
+       3) echo "Result: $(($num1 * $num2))" ;;
+       4) echo "Result: $(($num1 / $num2))" ;;
+       *) echo "Invalid operation" ;;
+   esac
+}
+menu_calculator
+
+
+10. Print Pattern
+#!/bin/bash
+print_pattern() {
+   for i in {1..5}
+   do
+       for j in $(seq 1 $i)
+       do
+           echo -n "* "
+       done
+       echo ""
+   done
+}
+print_pattern
+
+
+11. Directory Operations
+#!/bin/bash
+directory_operations() {
+   echo "Current Directory: $(pwd)"
+   echo "Contents of the Directory:"
+   ls
+   echo "Creating a new directory named 'new_directory'..."
+   mkdir -p new_directory
+   echo "New directory created."
+   echo "Copying contents to the new directory..."
+   cp -r * new_directory/
+   echo "Contents copied."
+}
+directory_operations
